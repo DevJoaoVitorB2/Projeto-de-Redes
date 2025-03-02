@@ -11,6 +11,9 @@ class Computador:
         self.qtdProcessadores = qtdProcessadores
         self.armazTotal = armazTotal
         self.armazLivre = armazLivre
+    
+    def __str__(self):
+        return f"[{self.id}] - {self.nome} \n\tMemória RAM Total: {self.ramTotal}GB \n\tMemória RAM Livre: {self.ramLivre}GB \n\tQuantidade de Processadores: {self.qtdProcessadores} \n\tArmazenamento Total: {self.armazTotal} \n\tArmazenamento Livre: {self.armazLivre} \n"
 
 class Computadores:
     objetos = []

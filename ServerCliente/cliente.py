@@ -1,6 +1,5 @@
 import socket
 import json
-import streamlit as st
 
 from ServerCliente.view import View
 
@@ -13,17 +12,19 @@ class Cliente:
     
     def procurar_servidor(self):
         while True:
+            print("Aguardando Informações do Servidor...")
             dados, endereco = self.socket_udp.recvfrom(1024) # Receber os dados Broadcast
 
             # Decodificação dos Dados
-            servidor_info = json.loads()
+            servidor_info = json.loads(dados)
             ip = servidor_info['ip']
             porta = servidor_info['porta']
 
             # Encontrou o Servidor!
             self.socket_udp.close()
-            st.success(f"Conexão com o Servidor Efetuada: \n\t{ip} - {porta}")
-            self.conectar(ip, porta)
+            print(f"Conexão com o Servidor Efetuada: \n\t{ip} - {porta}")
+            break
+        self.conectar(ip, porta)
 
     def conectar(self, ip, porta):
         # Criar um Socket Cliente/TCP
