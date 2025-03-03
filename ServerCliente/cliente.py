@@ -12,7 +12,7 @@ class Cliente:
     
     def procurar_servidor(self):
         while True:
-            print("Aguardando Informações do Servidor...")
+            print("\n\033[1m\033[32mAguardando Informações do Servidor...\033[0m \n")
             dados, endereco = self.socket_udp.recvfrom(1024) # Receber os dados Broadcast
 
             # Decodificação dos Dados
@@ -22,7 +22,7 @@ class Cliente:
 
             # Encontrou o Servidor!
             self.socket_udp.close()
-            print(f"Conexão com o Servidor Efetuada: \n\t{ip} - {porta}")
+            print(f"\033[1m\033[32m\tConexão com o Servidor Efetuada!\033[0m \n\t    IP: {ip} - Porta: {porta}")
             break
         self.conectar(ip, porta)
 
@@ -32,5 +32,6 @@ class Cliente:
         socket_tcp.connect((ip, porta)) # Conectar ao Servidor TCP/IP
 
         # Enviar os dados da maquina do Cliente e finalizar conexão
-        socket_tcp.send(View.ExtrairDados().encode())  
+        socket_tcp.send(View.ExtrairDados().encode())
+        print("\n\033[1m\033[32mDados Enviados!\033[0m \n")
         socket_tcp.close()
